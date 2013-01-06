@@ -27,8 +27,8 @@ PhantomJS is created by Ariya Hidayat.
 LD_REL="$( /usr/bin/python -c "import os.path; print os.path.relpath('%{_libdir}/phantomjs', '%{_bindir}')" )"
 
 # use chrpath to replace RPATH: <RPATH> <BINARY>
-/usr/bin/chrpath -r ${LD_REL} bin/phantomjs 
-/usr/bin/chrpath -r ${LD_REL} src/qt/lib/*.so*
+/usr/bin/chrpath -r "\$ORIGIN/${LD_REL}" bin/phantomjs 
+/usr/bin/chrpath -d src/qt/lib/*.so*
 
 %install
 rm -rf %{buildroot}
