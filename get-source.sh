@@ -1,7 +1,7 @@
 #!/bin/sh
 
 REPO_URL="https://github.com/ariya/phantomjs.git"
-VERSION="1.6.0"
+VERSION="1.9.1"
 PREFIX="phantomjs-${VERSION}"
 ARCHIVE_NAME="${PREFIX}-source.tar.gz"
 
