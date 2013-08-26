@@ -49,10 +49,6 @@ rm -rf %{buildroot}
 %{prefix}/share/%{name}/examples/
 
 
-%files
-%defattr(-,root,root,-)
-%{_bindir}/phantomjs
-
 %changelog
 * Fri Aug 23 2013 Thomas Lehmann <t.lehmann@strato-rz.de> - 1.9.1-1
 - Updated to PhantomJS 1.9.1.
@@ -69,4 +65,3 @@ rm -rf %{buildroot}
 
 * Wed Apr 18 2012 Simon Josi <me@yokto.net> - 1.5.0-1
 - Package PhantomJS 1.5.0.
-
