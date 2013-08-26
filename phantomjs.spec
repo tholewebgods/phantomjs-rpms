@@ -21,14 +21,14 @@ PhantomJS is created by Ariya Hidayat.
 
 %build
 
-./build.sh --jobs "`grep "^processor" /proc/cpuinfo | wc -l`"
+./build.sh --confirm --jobs "`grep "^processor" /proc/cpuinfo | wc -l`"
 
 # get path to library relative to bin directory using Python
 LD_REL="`python -c "import os.path; print os.path.relpath('%{_libdir}/phantomjs', '%{_bindir}')"`"
 
 # use chrpath to replace RPATH: <RPATH> <BINARY>
 /usr/bin/chrpath -r ${LD_REL} bin/phantomjs 
-/usr/bin/chrpath -r ${LD_REL} src/qt/lib/*.so*
+/usr/bin/chrpath -r ${LD_REL} src/qt/lib/*.a
 
 %install
 rm -rf %{buildroot}
