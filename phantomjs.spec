@@ -29,9 +29,7 @@ PhantomJS is created by Ariya Hidayat.
 rm -rf %{buildroot}
 %{__install} -p -D -m 0755 bin/phantomjs %{buildroot}%{_bindir}/phantomjs
 mkdir -p %{buildroot}%{_libdir}/phantomjs
-cp -a src/qt/lib/* %{buildroot}%{_libdir}/phantomjs
 rm -rf %{buildroot}%{_libdir}/phantomjs/{fonts,pkgconfig,*.la,*.prl,README}
-
 
 mkdir -p %{buildroot}%{_sharedir}/%{name}/examples
 cp examples/* %{buildroot}%{_sharedir}/%{name}/examples/
