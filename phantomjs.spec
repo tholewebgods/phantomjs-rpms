@@ -23,12 +23,7 @@ PhantomJS is created by Ariya Hidayat.
 
 ./build.sh --confirm --jobs "`grep "^processor" /proc/cpuinfo | wc -l`"
 
-# get path to library relative to bin directory using Python
-LD_REL="`python -c "import os.path; print os.path.relpath('%{_libdir}/phantomjs', '%{_bindir}')"`"
-
-# use chrpath to replace RPATH: <RPATH> <BINARY>
-/usr/bin/chrpath -r ${LD_REL} bin/phantomjs 
-/usr/bin/chrpath -r ${LD_REL} src/qt/lib/*.a
+/usr/bin/chrpath -d bin/phantomjs 
 
 %install
 rm -rf %{buildroot}
@@ -37,13 +32,28 @@ mkdir -p %{buildroot}%{_libdir}/phantomjs
 cp -a src/qt/lib/* %{buildroot}%{_libdir}/phantomjs
 rm -rf %{buildroot}%{_libdir}/phantomjs/{fonts,pkgconfig,*.la,*.prl,README}
 
+
+mkdir -p %{buildroot}%{_sharedir}/%{name}/examples
+cp examples/* %{buildroot}%{_sharedir}/%{name}/examples/
+cp CONTRIBUTING.md %{buildroot}%{_sharedir}/%{name}
+cp ChangeLog %{buildroot}%{_sharedir}/%{name}
+cp LICENSE.BSD %{buildroot}%{_sharedir}/%{name}
+cp README.md %{buildroot}%{_sharedir}/%{name}
+
 %clean
 rm -rf %{buildroot}
 
 %files
+%defattr(0444,root,root)
+%attr(0555,root,root)%{prefix}/bin/%{name}
+%{prefix}/share/%{name}/ChangeLog
+%{prefix}/share/%{name}/CONTRIBUTING.md
+%{prefix}/share/%{name}/examples/
+
+
+%files
 %defattr(-,root,root,-)
 %{_bindir}/phantomjs
-%{_libdir}/phantomjs
 
 %changelog
 * Fri Aug 23 2013 Thomas Lehmann <t.lehmann@strato-rz.de> - 1.9.1-1
