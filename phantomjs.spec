@@ -23,30 +23,28 @@ PhantomJS is created by Ariya Hidayat.
 
 ./build.sh --confirm --jobs "`grep "^processor" /proc/cpuinfo | wc -l`"
 
-/usr/bin/chrpath -d bin/phantomjs 
+/usr/bin/chrpath -d bin/%{name}
 
 %install
 rm -rf %{buildroot}
-%{__install} -p -D -m 0755 bin/phantomjs %{buildroot}%{_bindir}/phantomjs
-mkdir -p %{buildroot}%{_libdir}/phantomjs
-rm -rf %{buildroot}%{_libdir}/phantomjs/{fonts,pkgconfig,*.la,*.prl,README}
+%{__install} -p -D -m 0755 bin/%{name} %{buildroot}/%{_bindir}/phantomjs
 
-mkdir -p %{buildroot}%{_sharedir}/%{name}/examples
-cp examples/* %{buildroot}%{_sharedir}/%{name}/examples/
-cp CONTRIBUTING.md %{buildroot}%{_sharedir}/%{name}
-cp ChangeLog %{buildroot}%{_sharedir}/%{name}
-cp LICENSE.BSD %{buildroot}%{_sharedir}/%{name}
-cp README.md %{buildroot}%{_sharedir}/%{name}
+mkdir -p %{buildroot}/%{_prefix}/shared/%{name}/examples
+cp examples/* %{buildroot}/%{_prefix}/shared/%{name}/examples/
+cp CONTRIBUTING.md %{buildroot}/%{_prefix}/shared/%{name}
+cp ChangeLog %{buildroot}/%{_prefix}/shared/%{name}
+cp LICENSE.BSD %{buildroot}/%{_prefix}/shared/%{name}
+cp README.md %{buildroot}/%{_prefix}/shared/%{name}
 
 %clean
 rm -rf %{buildroot}
 
 %files
 %defattr(0444,root,root)
-%attr(0555,root,root)%{prefix}/bin/%{name}
-%{prefix}/share/%{name}/ChangeLog
-%{prefix}/share/%{name}/CONTRIBUTING.md
-%{prefix}/share/%{name}/examples/
+%attr(0555,root,root)%{_bindir}/%{name}
+%{_prefix}/shared/%{name}/ChangeLog
+%{_prefix}/shared/%{name}/CONTRIBUTING.md
+%{_prefix}/shared/%{name}/examples/
 
 
 %changelog
@@ -64,4 +62,4 @@ rm -rf %{buildroot}
   /usr/lib*/phantomjs
 
 * Wed Apr 18 2012 Simon Josi <me@yokto.net> - 1.5.0-1
-- Package PhantomJS 1.5.0.
+: Package PhantomJS 1.5.0.
