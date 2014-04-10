@@ -1,7 +1,7 @@
 #!/bin/sh
 
 REPO_URL="https://github.com/ariya/phantomjs.git"
-VERSION="1.9.1"
+VERSION="1.9.7"
 PREFIX="phantomjs-${VERSION}"
 ARCHIVE_NAME="${PREFIX}-source.tar.gz"
 
@@ -36,6 +36,10 @@ ARCHIVE="$( readlink -f ../${ARCHIVE_NAME} )"
 echo "Creating archive ${ARCHIVE}"
 
 git archive --format=tar -o ${ARCHIVE} --prefix ${PREFIX}/ refs/tags/${VERSION}
+
+echo -n "The current Git Hash is: "
+
+git rev-parse refs/tags/${VERSION}
 
 popd >/dev/null
 
