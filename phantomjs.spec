@@ -49,6 +49,8 @@ rm -rf %{buildroot}
 * Thu Apr 10 2014 Thomas Lehmann <t.lehmann@strato-rz.de> - 1.9.7-1
 - Updated to PhantomJS 1.9.7.
 
+Git Commit ID: f661dfc61f18d2bf20fece9ec64826ca37dc0e33
+
 * Wed Oct 30 2013 Thomas Lehmann <t.lehmann@strato-rz.de> - 1.9.2-1
 - Updated to PhantomJS 1.9.2.
 
